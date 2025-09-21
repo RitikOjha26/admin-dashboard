@@ -62,7 +62,7 @@ function TimelineItem({
 
       <div className="min-w-0 items-center">
         <div className="text-[14px] leading-6 text-foreground truncate">{title}</div>
-        <div className="text-[12px] leading-5 text-foreground/60">{time}</div>
+        <div className="text-[12px] leading-5 text-foreground/60 dark:text-[#ffffff66]">{time}</div>
       </div>
     </li>
   )

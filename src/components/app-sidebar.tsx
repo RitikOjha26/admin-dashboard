@@ -1,20 +1,19 @@
-"use client"
-
 import * as React from "react"
+import { useEffect } from "react"
 import {
   BookOpen,
   Briefcase,
   FileText,
   FolderOpen,
   MessageCircle,
-  PieChart,
   ShoppingBag,
   User,
   Users,
 } from "lucide-react"
-
+import ProfileCard from "@/components/ui/profile-card"
+import avatar from "@/assets/contactsAvatar/profile2.png"
+import { useSidebarBus, useSidebar } from "@/components/ui/sidebar"
 import { NavMain } from "@/components/nav-main"
-import { TeamSwitcher } from "@/components/team-switcher"
 import {
   Sidebar,
   SidebarContent,
@@ -24,18 +23,6 @@ import {
 import PinnedQuickAccess from "./ui/pinned-quick-access"
 
 const data = {
-  user: {
-    name: "shadcn",
-    email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
-  },
-  teams: [
-    {
-      name: "Acme Inc",
-      logo: PieChart,
-      plan: "Enterprise",
-    },
-  ],
   dashboards: [
     {
       title: "eCommerce",
@@ -136,14 +123,36 @@ const data = {
   ],
 }
 
-export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+type Props = React.ComponentProps<typeof Sidebar> & {
+  sidebarId?: string
+}
+
+export function AppSidebar({ sidebarId = "left", ...props }: Props) {
+
+  const bus = useSidebarBus()
+  const { open, setOpen } = useSidebar()
+
+  // Bus -> provider
+  useEffect(() => {
+  const unsubscribe = bus.subscribe(sidebarId, setOpen)
+  return () => {
+    unsubscribe() // call it, but ignore its boolean
+  }
+}, [bus, sidebarId, setOpen])
+
+
+
+ useEffect(() => {
+    bus.set(sidebarId, open)
+  }, [bus, sidebarId ,open])
+
   return (
-    <Sidebar collapsible="icon" {...props}>
+    <Sidebar side="left" collapsible="icon" {...props}>
       <SidebarHeader>
-        <TeamSwitcher teams={data.teams} />
+        <ProfileCard name="ByeWind" avatarSrc={avatar} />
       </SidebarHeader>
       <SidebarContent>
-        <PinnedQuickAccess/>
+        <PinnedQuickAccess />
         <NavMain items={data.dashboards} heading="Dashboards" />
         <NavMain items={data.pages} heading="Pages" />
       </SidebarContent>

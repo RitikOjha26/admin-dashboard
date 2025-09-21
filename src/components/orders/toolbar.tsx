@@ -15,10 +15,10 @@ export default function OrdersToolbar({ query, setQuery, visible, setVisible , o
     return (
         <div className="flex items-center justify-between rounded-xl py-2">
             <div className="flex items-center gap-2">
-                <Button size="icon" variant="ghost"><Plus className="size-4" /></Button>
+                <Button size="icon" variant="ghost"><Plus className="size-4 text-black hover:bg-gray-700 dark:text-white" /></Button>
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                        <Button size="icon" variant="ghost"><ListFilter className="size-4" /></Button>
+                        <Button size="icon" variant="ghost"><ListFilter className="size-4 text-black hover:bg-gray-700 dark:text-white" /></Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="start" className="w-44">
                         <DropdownMenuLabel>Columns</DropdownMenuLabel>
@@ -35,7 +35,7 @@ export default function OrdersToolbar({ query, setQuery, visible, setVisible , o
                     </DropdownMenuContent>
                 </DropdownMenu>
                 <Button size="icon" variant="ghost" onClick={onSortByUser} title="Sort by user name">
-                    <ArrowUpDown className="size-4" />
+                    <ArrowUpDown className="size-4 text-black hover:bg-gray-700 dark:text-white" />
                 </Button>
             </div>
 

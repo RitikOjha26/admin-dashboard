@@ -697,6 +697,36 @@ function SidebarMenuSubButton({
   )
 }
 
+type Listener = (open: boolean) => void
+class SidebarBus {
+  private state = new Map<string, boolean>()
+  private listeners = new Map<string, Set<Listener>>()
+
+  get(id: string) { return this.state.get(id) ?? false }
+  set(id: string, open: boolean) {
+    this.state.set(id, open)
+    this.listeners.get(id)?.forEach(l => l(open))
+  }
+  toggle(id: string) { this.set(id, !this.get(id)) }
+  subscribe(id: string, fn: Listener) {
+    if (!this.listeners.has(id)) this.listeners.set(id, new Set())
+    this.listeners.get(id)!.add(fn)
+    return () => this.listeners.get(id)!.delete(fn)
+  }
+}
+
+const bus = new SidebarBus()
+const Ctx = React.createContext(bus)
+
+export function SidebarRegistryProvider({ children }: { children: React.ReactNode }) {
+  return <Ctx.Provider value={bus}>{children}</Ctx.Provider>
+}
+
+function useSidebarBus() {
+  return React.useContext(Ctx)
+}
+
+
 
 
 export {
@@ -725,4 +755,5 @@ export {
   SidebarSeparator,
   SidebarTrigger,
   useSidebar,
+  useSidebarBus,
 }

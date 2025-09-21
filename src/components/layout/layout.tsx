@@ -1,3 +1,5 @@
+import React from "react"
+import { useState } from "react"
 import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar"
 import { AppSidebar } from "@/components/app-sidebar"
 import { RightSidebar } from "@/components/right-sidebar"
@@ -5,16 +7,20 @@ import { AppNavbar } from "@/components/app-navbar"
 import { Outlet } from "react-router-dom"
 
 export default function Layout() {
+  const [leftOpen, setLeftOpen] = useState(true)
+  const [rightOpen, setRightOpen] = useState(false)
+
   return (
-    <div className="relative min-h-svh w-full">
-      <SidebarProvider defaultOpen>
-        <AppSidebar />
-        <SidebarInset className="flex-auto min-w-0 !w-[90%] overflow-hidden">
-          <AppNavbar />
+    <SidebarProvider open={rightOpen} onOpenChange={setRightOpen}>
+      <SidebarProvider open={leftOpen} onOpenChange={setLeftOpen}>
+        <AppSidebar /> {/* left */}
+        <SidebarInset>
+          <AppNavbar
+          />
           <Outlet />
         </SidebarInset>
-        <RightSidebar />
       </SidebarProvider>
-    </div>
+      <RightSidebar /> {/* right */}
+    </SidebarProvider>
   )
 }

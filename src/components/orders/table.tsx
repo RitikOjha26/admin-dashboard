@@ -47,7 +47,6 @@ export default function OrdersTable({ rows }: Props) {
         setData((prev) => prev.map((r) => (r.id === id ? { ...r, status } : r)))
     }
 
-
     const [sortKey, setSortKey] = React.useState<"userName" | keyof Order>("date")
     const [asc, setAsc] = React.useState(false)
 
@@ -93,7 +92,7 @@ export default function OrdersTable({ rows }: Props) {
                 <Table>
                     <TableHeader>
                         <TableRow
-                            className="border-b"
+                            className="border-b "
                             style={{ borderColor: "rgba(28,28,28,0.2)" }}
                         >
                             <TableHead className="w-10">
@@ -124,7 +123,7 @@ export default function OrdersTable({ rows }: Props) {
 
                     <TableBody>
                         {pageRows.map((r) => (
-                            <TableRow key={r.id} className="hover:bg-muted/40 text-[12px] border-0">
+                            <TableRow key={r.id} className="hover:bg-muted/40 text-[12px] border-0 text-black dark:text-white">
                                 <TableCell className="w-10 ">
                                     <Checkbox className="text-[12px]" aria-label={`Select ${r.id}`} />
                                 </TableCell>

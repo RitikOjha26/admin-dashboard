@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
 import { ThemeProvider } from "@/components/ui/theme-provider"
+import { SidebarRegistryProvider } from "@/components/ui/sidebar"
 import Layout from "./components/layout/layout"
 import MainContent from "./components/mainContent"
 import OrderList from "./components/order-list"
@@ -9,6 +10,7 @@ import "./App.css"
 export default function App() {
   return (
     <ThemeProvider defaultTheme="system">
+    <SidebarRegistryProvider>
     <BrowserRouter>
       <Routes>
         <Route element={<Layout />}>
@@ -18,6 +20,7 @@ export default function App() {
         </Route>
       </Routes>
     </BrowserRouter>
+    </SidebarRegistryProvider>
     </ThemeProvider>
   )
 }

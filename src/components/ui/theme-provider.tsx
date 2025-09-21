@@ -20,6 +20,8 @@ function applyTheme(theme: Theme) {
   const root = document.documentElement
   const mode = theme === "system" ? getSystem() : theme
   root.classList.toggle("dark", mode === "dark")
+  
+  root.style.colorScheme = mode // "light" | "dark"
 }
 
 export function ThemeProvider({ children, defaultTheme = "system" as Theme }: { children: React.ReactNode; defaultTheme?: Theme }) {

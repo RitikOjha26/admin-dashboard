@@ -1,11 +1,15 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
+import { useTheme } from "../ui/theme-provider";
 
 type Product = { name: string; price: string; qty: number | string; amount: string }
 
 export function TopSellingTable({ rows }: { rows: Product[] }) {
+
+  const { resolved } = useTheme();
+
   return (
-    <Card className="rounded-3xl p-6">
+    <Card className="rounded-3xl p-6 dark:bg-[#ffffff0d] " >
       <CardHeader className="p-0 pb-2">
         <CardTitle>Top Selling Products</CardTitle>
       </CardHeader>
@@ -15,8 +19,11 @@ export function TopSellingTable({ rows }: { rows: Product[] }) {
           <Table className="w-full">
             <TableHeader>
               <TableRow
-                className="[&>th]:text-[rgba(28,28,28,0.4)] border-b"
-                style={{ borderColor: "rgba(28,28,28,0.2)" }}
+                className="border-b"
+                style={{
+                  color: resolved === "light" ? "rgba(28,28,28,0.4)" : "rgba(255, 255, 255, 0.4)",
+                  borderColor: resolved === "light" ? "rgba(28,28,28,0.2)" : "rgba(255, 255, 255, 0.4)",
+                }}
               >
                 <TableHead className="w-[45%] pl-0">Name</TableHead>
                 <TableHead className="w-[15%] text-right pr-0">Price</TableHead>

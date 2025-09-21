@@ -43,7 +43,7 @@ export default function MainContent() {
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-10 gap-6">
-                <div className="lg:col-span-7">
+                <div className="lg:col-span-7 element">
                     <TopSellingTable
                         rows={[
                             { name: "ASOS Ridley High Waist", price: "$79.49", qty: 82, amount: "$6,518.18" },
@@ -52,6 +52,7 @@ export default function MainContent() {
                             { name: "Lightweight Jacket", price: "$20.00", qty: 184, amount: "$3,680.00" },
                             { name: "Marco Shoes", price: "$79.49", qty: 64, amount: "$1,965.81" },
                         ]}
+                        
                     />
                 </div>
                 <div className="lg:col-span-3">

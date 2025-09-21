@@ -1,20 +1,31 @@
-import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar"
+import {
+  LeftSidebarProvider,
+  RightSidebarProvider,
+} from "@/hooks/sidebar-context"
 import { AppSidebar } from "@/components/app-sidebar"
 import { RightSidebar } from "@/components/right-sidebar"
 import { AppNavbar } from "@/components/app-navbar"
-import type { ReactNode } from "react"
+import {LeftSidebarTrigger , RightSidebarTrigger} from "@/components/ui/button"
 
-export default function DashboardLayout({ children }: { children: ReactNode }) {
+
+export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="relative min-h-svh w-full">
-      <SidebarProvider defaultOpen>
+      <LeftSidebarProvider defaultOpen>
         <AppSidebar />
-        <SidebarInset className="flex-auto min-w-0 !w-[90%] overflow-hidden">
-          <AppNavbar />
-          {children}
-        </SidebarInset>
+        <LeftSidebarTrigger />
+      </LeftSidebarProvider>
+
+      <RightSidebarProvider>
         <RightSidebar />
-      </SidebarProvider>
+        <RightSidebarTrigger />
+      </RightSidebarProvider>
+
+      <div className="flex-auto min-w-0 overflow-hidden">
+        <AppNavbar />
+        {children}
+      </div>
     </div>
   )
 }
+

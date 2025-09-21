@@ -24,10 +24,10 @@ export function Notifications({ items }: { items: NotificationData[] }) {
         return (
           <SidebarMenuItem key={notification.id}>
             <SidebarMenuButton className="h-auto py-2 pr-2 gap-2 rounded-lg hover:bg-muted/50">
-              <Icon className="size-4 text-foreground/70" />
+              <Icon className="size-4 text-foreground/70  dark:text-[#e3f5ff] dark:rounded-md dark:border" />
               <div className="min-w-0">
                 <div className="text-sm text-foreground truncate">{notification.title}</div>
-                <div className="text-[12px] text-[rgba(28,28,28,0.4)] ">{notification.time}</div>
+                <div className="text-[12px] text-[rgba(28,28,28,0.4)] dark:text-[#ffffff66] ">{notification.time}</div>
               </div>
             </SidebarMenuButton>
           </SidebarMenuItem>

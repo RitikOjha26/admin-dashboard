@@ -30,7 +30,7 @@ function BadgeTooltip({ active, payload }: any) {
 
 export function TotalSalesCard() {
   return (
-    <Card className="rounded-3xl">
+    <Card className="rounded-3xl dark:bg-[#ffffff0d]">
       <CardHeader className="pb-2">
         <CardTitle>Total Sales</CardTitle>
       </CardHeader>

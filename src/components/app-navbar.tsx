@@ -1,5 +1,4 @@
-import { SidebarTrigger } from "@/components/ui/sidebar"
-import { RightSidebarTrigger } from "@/components/ui/right-sidebar-trigger"
+import { SidebarTrigger } from "@/components/ui/sidebar-trigger"
 import { Input } from "@/components/ui/input"
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb"
 import { Button } from "@/components/ui/button"
@@ -7,18 +6,19 @@ import { Star, History, Bell, Sun, Search, Moon } from "lucide-react"
 import { MobileSearch } from "./ui/mobile-search"
 import { useTheme } from "./ui/theme-provider"
 
+
 export function AppNavbar() {
 
-   const { resolved, toggle } = useTheme()
+  const { resolved, toggle } = useTheme()
 
   return (
     <div className="sticky top-0 z-20 w-full border-b bg-background/80 backdrop-blur">
       <div className="mx-auto flex h-14 w-full items-center justify-between gap-4 px-4">
-        
-        <div className="flex items-center gap-2 rounded-md border border-transparent px-2 py-1 [outline:1px_dashed_#cfe3ff]/10">
-          <SidebarTrigger className="-ml-1" />
 
-         
+        <div className="flex items-center gap-2 rounded-md border border-transparent px-2 py-1 [outline:1px_dashed_#cfe3ff]/10">
+          <SidebarTrigger className="-ml-1 text-black hover:text-gray-500 dark:text-white" targetId="left"   />
+
+
           <Button
             variant="ghost"
             size="icon"
@@ -26,10 +26,10 @@ export function AppNavbar() {
             aria-label="Favorite"
             title="Favorite"
           >
-            <Star className="size-4" />
+            <Star className="size-4 text-black hover:text-gray-500 dark:text-white" />
           </Button>
 
-          
+
           <Breadcrumb className=" sm:block">
             <BreadcrumbList className="text-sm">
               <BreadcrumbItem>
@@ -45,9 +45,9 @@ export function AppNavbar() {
           </Breadcrumb>
         </div>
 
-        
+
         <div className="flex items-center gap-3 rounded-md border border-transparent px-2 py-1 [outline:1px_dashed_#cfe3ff]/10">
-          
+
           <div className="relative hidden sm:flex items-center">
             <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
             <Input
@@ -60,7 +60,7 @@ export function AppNavbar() {
             </kbd>
           </div>
 
-          
+
           <MobileSearch />
           <Button
             variant="ghost"
@@ -70,17 +70,18 @@ export function AppNavbar() {
             title="Toggle theme"
             onClick={toggle}
           >
-            {resolved === "dark" ? <Moon className="size-4" /> : <Sun className="size-4" />}
+            {resolved === "dark" ? <Moon className="size-4 text-black hover:text-gray-500 dark:text-white" /> : <Sun className="size-4 text-black hover:text-gray-500 dark:text-white" />}
           </Button>
-          <Button variant="ghost" size="icon" className="size-8 hidden md:inline-flex" aria-label="Recent" title="Recent">
-            <History className="size-4" />
+          <Button variant="ghost" size="icon" className="size-8 hidden md:inline-flex text-foreground dark:text-foreground/80">
+            <History className="size-4 text-black hover:text-gray-500 dark:text-white" />
           </Button>
-          <Button variant="ghost" size="icon" className="size-8 hidden md:inline-flex" aria-label="Notifications" title="Notifications">
-            <Bell className="size-4" />
+
+          <Button variant="ghost" size="icon" className="size-8 hidden md:inline-flex text-foreground dark:text-foreground/80">
+            <Bell className="size-4 text-black hover:bg-gray-700 dark:text-white" />
           </Button>
-          
-          <RightSidebarTrigger targetId="right" className=" md:inline-flex" />
-          
+
+          <SidebarTrigger targetId="right" className=" md:inline-flex text-black hover:text-gray-500 dark:text-white"   />
+
         </div>
       </div>
     </div>

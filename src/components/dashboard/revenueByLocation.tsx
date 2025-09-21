@@ -46,7 +46,7 @@ export function RevenueByLocationCard({ rows }: { rows: Row[] }) {
         .filter((p) => Number.isFinite((p as any).lat) && Number.isFinite((p as any).lon)) as any
 
     return (
-        <Card className="rounded-3xl">
+        <Card className="rounded-3xl dark:bg-[#ffffff0d] ">
             <CardHeader className="pb-2">
                 <CardTitle>Revenue by Location</CardTitle>
             </CardHeader>

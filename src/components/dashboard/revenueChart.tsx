@@ -9,6 +9,8 @@ import {
   CartesianGrid,
   Tooltip,
 } from "recharts"
+import { useTheme } from "../ui/theme-provider"
+
 
 const data = [
   { month: "Jan", current: 12, previous: 8, forecast: null },
@@ -22,12 +24,15 @@ const data = [
 const toMillions = (v: number) => `${v}M`
 
 export function RevenueChartCard() {
+  const {  resolved } = useTheme()
+  const currentStroke = resolved === "light" ? "#111827" : "rgba(198, 199, 248, 1)"
+
   return (
-    <Card className="rounded-3xl">
+    <Card className="rounded-3xl dark:bg-[#ffffff0d]">
       <CardHeader className="pb-2">
         <div className="flex items-center gap-4">
           <CardTitle>Revenue</CardTitle>
-          
+
           <div className="hidden sm:flex items-center gap-4 text-sm">
             <span className="inline-flex items-center gap-2">
               <span className="size-2 rounded-full bg-neutral-800" />
@@ -77,16 +82,16 @@ export function RevenueChartCard() {
             <Line
               type="monotone"
               dataKey="current"
-              stroke="#111827"
+              stroke={currentStroke}
               strokeWidth={3}
               dot={false}
               activeDot={{ r: 4 }}
             />
             {/* Forecast  */}
             <Line
-              type="natural"             
+              type="natural"
               dataKey="forecast"
-              stroke="#111827"
+              stroke={currentStroke}
               strokeWidth={3}
               dot={false}
               strokeDasharray="4 6"

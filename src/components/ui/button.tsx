@@ -1,6 +1,8 @@
 import * as React from "react"
 import { Slot } from "@radix-ui/react-slot"
 import { cva, type VariantProps } from "class-variance-authority"
+import { useSidebar } from "@/components/ui/sidebar"
+import { PanelLeftIcon, PanelRightIcon } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 
@@ -55,4 +57,29 @@ function Button({
   )
 }
 
-export { Button, buttonVariants }
+function LeftSidebarTrigger() {
+  const { open, setOpen } = useSidebar()
+  return (
+    <button
+      onClick={() => setOpen(!open)}
+      className="fixed top-4 left-4 z-50 rounded-full bg-primary p-2 text-white shadow-md lg:hidden"
+      aria-label="Toggle left menu"
+    >
+      <PanelLeftIcon size={20} />
+    </button>
+  )
+}
+
+function RightSidebarTrigger() {
+  const { open, setOpen } = useSidebar()
+  return (
+    <button
+      onClick={() => setOpen(!open)}
+      className="fixed top-4 right-4 z-50 rounded-full bg-primary p-2 text-white shadow-md lg:hidden"
+      aria-label="Toggle right menu"
+    >
+      <PanelRightIcon size={20} />
+    </button>
+  )
+}
+export { Button, buttonVariants, LeftSidebarTrigger, RightSidebarTrigger }

@@ -8,6 +8,8 @@ import {
   CartesianGrid,
   Tooltip,
 } from "recharts"
+import { useTheme } from "../ui/theme-provider"
+
 
 const data = [
   { month: "Jan", actual: 18, proj: 2 },
@@ -22,8 +24,11 @@ const data = [
 const toMillions = (v: number) => `${v}M`
 
 export function ProjectionsCard() {
+    const {  resolved } = useTheme()
+    const currentStroke = resolved === "light" ? "rgba(28, 28, 28, 0.4)" : "rgba(255, 255, 255, 0.4)"
+
   return (
-    <Card className="rounded-3xl">
+    <Card className="rounded-3xl dark:bg-[#ffffff0d]">
       <CardHeader>
         <CardTitle>Projections vs Actuals</CardTitle>
       </CardHeader>
@@ -31,19 +36,19 @@ export function ProjectionsCard() {
       <CardContent className="h-52 sm:h-64">
         <ResponsiveContainer width="100%" height="100%">
           <BarChart data={data} barCategoryGap={24}>
-            <CartesianGrid vertical={false} stroke="#e5e7eb" />
+            <CartesianGrid vertical={false} stroke={currentStroke} />
             <XAxis
               dataKey="month"
               tickLine={false}
               axisLine={false}
               tickMargin={8}
-              stroke="#9ca3af"
+              stroke={currentStroke}
             />
             <YAxis
               tickLine={false}
               axisLine={false}
               tickMargin={8}
-              stroke="#9ca3af"
+              stroke={currentStroke}
               tickFormatter={toMillions}
               domain={[0, 30]}
             />
