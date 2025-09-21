@@ -13,10 +13,10 @@ export default function MainContent() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <InfoCards
                     items={[
-                        { title: "Customers", value: "3,781", delta: "+11.01%", tint: 'blue' },
-                        { title: "Orders", value: "1,219", delta: "-0.03%", tint: 'slate' },
-                        { title: "Revenue", value: "$695", delta: "+15.03%", tint: 'slate' },
-                        { title: "Growth", value: "30.1%", delta: "+6.08%", tint: 'blue' },
+                        { title: "Customers", value: "3,781", delta: "+11.01%", tint: 'blue' , trend:'up' },
+                        { title: "Orders", value: "1,219", delta: "-0.03%", tint: 'slate', trend:'down' },
+                        { title: "Revenue", value: "$695", delta: "+15.03%", tint: 'slate', trend:'up' },
+                        { title: "Growth", value: "30.1%", delta: "+6.08%", tint: 'blue', trend:'up' },
                     ]}
                 />
                 <ProjectionsCard />
