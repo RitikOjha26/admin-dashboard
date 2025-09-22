@@ -1,62 +1,68 @@
-Admin Dashboard (React + TypeScript + Vite)
+Here’s a polished **README.md** for your GitHub project that follows best practices with clear structure, badges, and formatting:
 
-A modern, responsive admin dashboard built with React, TypeScript, Vite, and Tailwind CSS. This dashboard features dual sidebars, a mobile-friendly Sheet experience, theme switching (light/dark/system), and modular components like cards, charts, and tables.
+***
 
-🚀 Features
+# Admin Dashboard (React + TypeScript + Vite)
 
-Dual Sidebars: Left navigation and right utilities with desktop/off-canvas and mobile Sheet behavior.
+A modern, responsive **Admin Dashboard** built with **React, TypeScript, Vite**, and **Tailwind CSS**. This dashboard includes dual sidebars, a mobile-friendly Sheet experience, theme switching (light/dark/system), and modular components such as cards, charts, and tables.
 
-Responsive Layouts: Mobile-first design with fine-tuned paddings, font scales, and overflow handling.
+![Vite](https://img.shields.io/badge/Vite-646CFF?logo=vite&logo)
 
-Theme System: Light, dark, and system themes with localStorage persistence and mobile color-scheme sync.
+  
+![React](https://img.shields.io/badge/React-20232A?logo=react&)
 
-Dashboard Components: InfoCards, Revenue charts, Top Selling tables, Total Sales cards.
+  
+  
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript)
 
-Accessibility: ARIA attributes, keyboard hints, and semantic HTML for better UX.
+  
+  
+  
+![TailwindCSS](https://img.shields.io/badge/TailwindCSS-06B6D4?logo=tailwind-css&logoColor=fffFeatures)
 
-🛠 Tech Stack
+- **Dual Sidebars**: Left navigation and right utilities with desktop/off-canvas & mobile Sheet behavior.  
+- **Responsive Layouts**: Mobile-first design with fine-tuned paddings, font scales, and overflow handling.  
+- **Theme System**: Light, dark, and system themes with localStorage persistence & mobile color-scheme sync.  
+- **Dashboard Components**: InfoCards, revenue charts, top selling tables, and total sales cards.  
+- **Accessibility**: ARIA attributes, keyboard hints, and semantic HTML for improved UX.  
 
-Frontend: React + TypeScript + Vite
+***
 
-Styling: Tailwind CSS (darkMode: "class"), Lucide icons, shadcn-style UI primitives
+## 🛠 Tech Stack
 
-Routing: React Router (Outlet for routed content)
+- **Frontend**: React + TypeScript + Vite  
+- **Styling**: Tailwind CSS (`darkMode: "class"`), Lucide icons, shadcn-style UI primitives  
+- **Routing**: React Router with `Outlet` for routed content  
+- **State/UX**: Context providers & SidebarBus for cross-component communication  
+- **Charts & Tables**: Modular, responsive, and mobile-first  
 
-State/UX: Context providers & SidebarBus for cross-component communication
+***
 
-Charts & Tables: Modular, responsive, and mobile-first
+## 📁 Project Structure
 
-📁 Project Structure
+```
 src/
 ├─ assets/                  # Static assets like images and fonts
 ├─ components/              # Reusable UI components
-│  ├─ ui/                   # Core UI primitives (e.g., Sidebar, Sheet, Tooltip)
+│  ├─ ui/                   # Core UI primitives (Sidebar, Sheet, Tooltip, etc.)
 │  ├─ app-sidebar/          # Left navigation content
 │  ├─ right-sidebar/        # Right utilities panel
 │  ├─ app-navbar/           # Sticky header with triggers & theme toggle
 ├─ dashboard/               # Dashboard-specific components
-│  ├─ cards/                # InfoCards and other card components
+│  ├─ cards/                # InfoCards and metrics cards
 │  ├─ charts/               # Chart components
 │  └─ tables/               # Table components
 ├─ routes/                  # Route definitions and layout
 ├─ App.tsx                  # Main application component
 ├─ main.tsx                 # Entry point for the application
-public/
-├─ index.html               # Main HTML file
-├─ vite.svg                 # Vite logo
-.gitignore                  # Git ignore rules
-.eslint.config.js           # ESLint configuration
-.eslint.config.ts           # TypeScript ESLint configuration
-package.json                # Project metadata and dependencies
-tailwind.config.ts          # Tailwind CSS configuration
-tsconfig.app.json           # TypeScript app configuration
-tsconfig.json               # TypeScript base configuration
-tsconfig.node.json          # TypeScript node configuration
-vite.config.ts              # Vite configuration
-vercel.json                 # Vercel deployment configuration
-components.json             # Component metadata for Storybook or documentation
+public/                     # Static public files
+```
 
-⚡ Quick Start
+***
+
+## ⚡ Quick Start
+
+```bash
 # Clone the repository
 git clone https://github.com/RitikOjha26/admin-dashboard.git
 cd admin-dashboard
@@ -64,27 +70,28 @@ cd admin-dashboard
 # Install dependencies
 npm install
 
-# Start the development server
+# Start development server
 npm run dev
 
 # Build for production
 npm run build
 
-# Preview the production build
+# Preview production build
 npm run preview
+```
 
-🎨 Theming
+***
 
-Supported themes: "light" | "dark" | "system"
+## 🎨 Theming
 
-Theme preference is persisted in localStorage
+- Supported themes: `"light"` | `"dark"` | `"system"`  
+- Theme preference is **persisted in localStorage**.  
+- Detects system preference via `matchMedia`.  
+- Applies Tailwind's `dark` class and `document.documentElement.style.colorScheme` for proper mobile rendering.  
 
-Detects system preference via matchMedia
+**Example usage:**
 
-Applies html.classList.toggle("dark", isDark) and sets document.documentElement.style.colorScheme for correct mobile rendering.
-
-Example usage:
-
+```tsx
 import { useTheme } from './components/ui/theme-provider';
 
 const ThemeToggle = () => {
@@ -95,56 +102,63 @@ const ThemeToggle = () => {
     </button>
   );
 };
+```
 
-🖥 Sidebar System
-Context Triggers (Recommended)
+***
 
-Place the trigger inside the correct SidebarProvider.
+## 🖥 Sidebar System
 
-Use useSidebar().toggleSidebar() to update both desktop and mobile states.
+- **Context Triggers (Recommended):** Use `useSidebar().toggleSidebar()` inside the correct `SidebarProvider`.  
+- **Bus-Bridged Triggers:** For triggers outside providers, use `SidebarBus` to synchronize desktop (open) & mobile (openMobile) states.  
+- **Right Sidebar:** Supports `side="right"`, `variant="inset"`, `collapsible="offcanvas"`.  
 
-Bus-Bridged Triggers
+***
 
-For triggers outside providers, use SidebarBus.
+## 📐 Responsive Layout Guidelines
 
-Synchronizes desktop (open) and mobile (openMobile) states.
+- **Cards:** Mobile-first paddings and font sizes; scale up at `sm`/`md` breakpoints.  
+- **Tables:** Rounded headers, `border-collapse: separate`, sticky headers without clipping.  
+- **Grids:** Consistent paddings: `pt-3 sm:pt-6 lg:pt-[70px]`.  
+- **Scrollbars:** Custom styling for Firefox & WebKit with light/dark mode support.  
 
-Right sidebar: side="right", variant="inset", collapsible="offcanvas".
+***
 
-📐 Responsive Layout Guidelines
+## 🔧 Linting & Code Style
 
-Cards: Mobile-first paddings and font sizes; scale up at sm/md breakpoints.
+- ESLint with **typescript-eslint + React rules**  
+- Vite TS template with strict type-checking  
+- Prettier recommended for consistent formatting  
 
-Tables: Use border-collapse: separate, rounded headers, sticky headers without clipping.
+***
 
-Grids: Consistent top paddings; pt-3 sm:pt-6 lg:pt-[70px].
+## 📦 Deployment
 
-Scrollbars: Custom styling with Firefox & WebKit support, respects light/dark modes.
+```bash
+npm run build
+npm run preview
+```
 
-🔧 Linting & Code Style
+Deploy static `dist/` output to **Vercel**, **Netlify**, or any static hosting service.  
 
-ESLint with typescript-eslint + React rules
+***
 
-Vite TS template ready for strict type-checking and style enforcement
+## 🤝 Contributing
 
-Prettier recommended for consistent formatting
+1. Fork the repository  
+2. Create your feature branch:  
+   ```bash
+   git checkout -b feature/my-feature
+   ```
+3. Commit your changes:  
+   ```bash
+   git commit -m "Add feature"
+   ```
+4. Push to branch:  
+   ```bash
+   git push origin feature/my-feature
+   ```
+5. Open a Pull Request  
 
-📦 Deployment
+***
 
-Build: npm run build
-
-Preview: npm run preview
-
-Deploy static output to Vercel, Netlify, or any static host.
-
-🤝 Contributing
-
-Fork the repo
-
-Create your feature branch (git checkout -b feature/my-feature)
-
-Commit changes (git commit -m 'Add feature')
-
-Push (git push origin feature/my-feature)
-
-Open a Pull Request
+Would you like me to also add **preview screenshots** and a **demo link section** at the top to make the README more visually engaging for GitHub?
